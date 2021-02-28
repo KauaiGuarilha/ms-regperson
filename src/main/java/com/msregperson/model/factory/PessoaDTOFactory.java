@@ -19,54 +19,6 @@ public class PessoaDTOFactory {
                 .build();
     }
 
-   /*public PessoaDTOResponse toPessoaDTO(Pessoa pessoa){
-        return PessoaDTOResponse.builder()
-                .id(pessoa.getId())
-                .nome(pessoa.getNome())
-                .cpf(pessoa.getCpf())
-                .dataNascimento(pessoa.getDataNascimento())
-                .endereco(EnderecoDTO.builder()
-                        .numero(pessoa.getEndereco().getNumero())
-                        .cep(pessoa.getEndereco().getCep())
-                        .logradouro(pessoa.getEndereco().getLogradouro())
-                        .idCidade(pessoa.getEndereco().getCidade().getId().toString())
-                        .idEstado(pessoa.getEndereco().getEstado().getId().toString())
-                        .idPais(pessoa.getEndereco().getPais().getId().toString())
-                        //.cidade(Cidade.builder().nome(pessoa.getEndereco().getCidade().getNome()).build())
-                        //.estado(pessoa.getEndereco().getEstado().getNome())
-                        //.pais(pessoa.getEndereco().getPais().getNome())
-                        .build())
-                .build();
-    }*/
-
-
-    /*public PessoaDTOResponse toPessoaDTO(Pessoa pessoa) {
-        return PessoaDTOResponse.builder()
-                .id(pessoa.getId())
-                .nome(pessoa.getNome())
-                .cpf(pessoa.getCpf())
-                .dataNascimento(pessoa.getDataNascimento())
-                .endereco(EnderecoDTOResponse.builder()
-                        .id(pessoa.getEndereco().getId())
-                        .numero(pessoa.getEndereco().getNumero())
-                        .cep(pessoa.getEndereco().getCep())
-                        .logradouro(pessoa.getEndereco().getLogradouro())
-                        .cidade(CidadeDTO.builder()
-                                .nome(pessoa.getEndereco().getCidade().getNome())
-                                .sigla(pessoa.getEndereco().getCidade().getSigla())
-                                .build())
-                        .estado(EstadoDTO.builder()
-                                .nome(pessoa.getEndereco().getEstado().getNome())
-                                .sigla(pessoa.getEndereco().getEstado().getSigla())
-                                .build())
-                        .pais(PaisDTO.builder()
-                                .nome(pessoa.getEndereco().getPais().getNome())
-                                .sigla(pessoa.getEndereco().getPais().getSigla())
-                                .build())
-                        .build())
-                .build();
-        }*/
-
     public PessoaDTOResponse toPessoaDTO(Pessoa pessoa) {
         return PessoaDTOResponse.builder()
                 .id(pessoa.getId())
@@ -96,4 +48,4 @@ public class PessoaDTOFactory {
                         .build())
                 .build();
     }
-    }
+}

@@ -25,7 +25,7 @@ public class PessoaController {
         return factory.toPessoaDTO(service.criarPessoa(factory.toPessoa(pessoaDto)));
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity editarPessoa(@PathVariable String id, @RequestBody PessoaDTO dto){
         PessoaDTOResponse response = factory.toPessoaDTO(service.editarPessoa(factory.toPessoa(dto), id));
         return ResponseEntity.ok(response);

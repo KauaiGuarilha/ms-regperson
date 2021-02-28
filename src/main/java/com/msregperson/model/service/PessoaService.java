@@ -44,16 +44,19 @@ public class PessoaService {
     }
 
     public Pessoa editarPessoa(Pessoa pessoa, String id){
-        Optional<Pessoa> optional = pessoaRepository.findById(UUID.fromString(id));
+        Optional<Pessoa> pessoaOptional = pessoaRepository.findById(UUID.fromString(id));
+        Optional<Endereco> enderecoOptional = enderecoRepository.findById(pessoa.getEndereco().getId());
 
-        if (optional.isPresent()){
-            Pessoa db = optional.get();
-            db.setNome(pessoa.getNome());
-            db.setCpf(pessoa.getCpf());
-            db.setDataNascimento(pessoa.getDataNascimento());
-            db.setEndereco(pessoa.getEndereco());
+        if (pessoaOptional.isPresent() && enderecoOptional.isPresent()){
+            Pessoa pessoaDB = pessoaOptional.get();
+            Endereco enderecoDB = enderecoOptional.get();
 
-            return pessoaRepository.save(db);
+            pessoaDB.setNome(pessoa.getNome());
+            pessoaDB.setCpf(pessoa.getCpf());
+            pessoaDB.setDataNascimento(pessoa.getDataNascimento());
+            pessoaDB.setEndereco(enderecoDB);
+
+            return pessoaRepository.save(pessoaDB);
         }
 
         return null;

@@ -33,7 +33,7 @@ public class Pessoa {
     private String dataNascimento;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_estado", nullable = false, updatable = false)
+    @JoinColumn(name = "id_endereco", nullable = false, updatable = false)
     private Endereco endereco;
 
      public Pessoa(UUID idPessoa){

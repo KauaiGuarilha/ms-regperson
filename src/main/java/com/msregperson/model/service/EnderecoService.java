@@ -25,8 +25,33 @@ public class EnderecoService {
 
     public Endereco criarEndereco(Endereco endereco){
         try {
-            Endereco enderecoSave = enderecoRepository.save(endereco);
-            return  enderecoSave;
+            Optional<Cidade> cidadeOptional = cidadeRepository.findById(endereco.getCidade().getId());
+            Optional<Estado> estadoOptional = estadoRepository.findById(endereco.getEstado().getId());
+            Optional<Pais> paisOptional = paisRepository.findById(endereco.getPais().getId());
+
+            if(cidadeOptional.isPresent() &&
+                    estadoOptional.isPresent() &&
+                    paisOptional.isPresent()) {
+
+                Cidade cidadeDB = cidadeOptional.get();
+                Estado estadoBD = estadoOptional.get();
+                Pais paisDB = paisOptional.get();
+
+                Endereco db = Endereco.builder()
+                        .id(endereco.getId())
+                        .numero(endereco.getNumero())
+                        .cep(endereco.getCep())
+                        .logradouro(endereco.getLogradouro())
+                        .cidade(cidadeDB)
+                        .estado(estadoBD)
+                        .pais(paisDB)
+                        .build();
+
+
+                Endereco enderecoSave = enderecoRepository.save(db);
+                return enderecoSave;
+            }
+            return null;
         } catch (Exception e){
             throw new RuntimeException("Não pode criar o cadastro do Endereço.");
         }
