@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -52,7 +53,7 @@ public class EstadoService {
 
     public Estado retorarEstadoPorSigla(String estadoSigla){
         try {
-            Estado estado = repository.findByEstadoSigla(estadoSigla);
+            Estado estado = repository.findByEstadoSigla(estadoSigla.toUpperCase(Locale.ROOT));
             return estado;
         } catch (Exception e){
             throw new RuntimeException("Não pode localizar o Estado por sigla.");

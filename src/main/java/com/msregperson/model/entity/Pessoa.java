@@ -33,9 +33,10 @@ public class Pessoa {
     private String dataNascimento;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "pessoa_endereco",
-            joinColumns = @JoinColumn(name = "pessooa_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "id"))
+    @JoinColumn(name = "id_estado", nullable = false, updatable = false)
     private Endereco endereco;
+
+     public Pessoa(UUID idPessoa){
+         this.id = idPessoa;
+     }
 }

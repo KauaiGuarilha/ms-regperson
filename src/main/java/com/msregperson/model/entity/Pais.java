@@ -27,4 +27,8 @@ public class Pais {
 
     @Column private String nome;
     @Column private String sigla;
+
+    public Pais(UUID idPais){
+        this.id = idPais;
+    }
 }

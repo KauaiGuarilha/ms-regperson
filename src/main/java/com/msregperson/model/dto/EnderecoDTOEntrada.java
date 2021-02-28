@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaDTO {
+public class EnderecoDTOEntrada {
 
-    private String nome;
-    private String cpf;
-    private String dataNascimento;
-    private String idEndereco;
+    private Integer numero;
+    private String cep;
+    private String logradouro;
+    private CidadeDTO cidade;
+    private EstadoDTO estado;
+    private PaisDTO pais;
 }

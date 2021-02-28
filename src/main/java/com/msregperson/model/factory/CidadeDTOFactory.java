@@ -5,13 +5,15 @@ import com.msregperson.model.dto.CidadeDTOResponse;
 import com.msregperson.model.entity.Cidade;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 @Component
 public class CidadeDTOFactory {
 
     public Cidade toCidade(CidadeDTO cidadeDTO){
         return Cidade.builder()
                 .nome(cidadeDTO.getNome())
-                .sigla(cidadeDTO.getSigla())
+                .sigla(cidadeDTO.getSigla().toUpperCase(Locale.ROOT))
                 .build();
     }
 

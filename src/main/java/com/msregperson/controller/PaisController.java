@@ -26,7 +26,7 @@ public class PaisController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity editarPais(@PathVariable String id, @RequestBody PaisDTO dto){
         PaisDTOResponse response = factory.toPaisDTO(service.editarPais(factory.toPais(dto), id));
         return ResponseEntity.ok(response);
@@ -38,8 +38,8 @@ public class PaisController {
     }
 
     @GetMapping("/retornar/{pais}")
-    public ResponseEntity retornarPaisPorNome(@NotBlank @RequestParam String cidade){
-        PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorNome(cidade));
+    public ResponseEntity retornarPaisPorNome(@NotBlank @RequestParam String pais){
+        PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorNome(pais));
         return ResponseEntity.ok(response);
     }
 

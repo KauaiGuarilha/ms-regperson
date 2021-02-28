@@ -30,23 +30,18 @@ public class Endereco {
     @Column private String logradouro;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "endereco_cidade",
-            joinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "cidade_id", referencedColumnName = "id"))
+    @JoinColumn(name = "id_cidade", nullable = false, updatable = false)
     private Cidade cidade;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "endereco_estado",
-            joinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "estado_id", referencedColumnName = "id"))
+    @JoinColumn(name = "id_estado", nullable = false, updatable = false)
     private Estado estado;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "endereco_pais",
-            joinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "pais_id", referencedColumnName = "id"))
+    @JoinColumn(name = "id_pais", nullable = false, updatable = false)
     private Pais pais;
+
+    public Endereco(UUID idEndereco) {
+        this.id = idEndereco;
+    }
 }

@@ -27,4 +27,8 @@ public class Estado {
 
     @Column private String nome;
     @Column private String sigla;
+
+    public Estado(UUID idEstado){
+        this.id = idEstado;
+    }
 }

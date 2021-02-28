@@ -26,7 +26,7 @@ public class EstadoController {
       return ResponseEntity.ok(response);
    }
 
-   @PutMapping(value = "/editar/{id}")
+   @PutMapping(value = "{id}")
    public ResponseEntity editarEstado(@PathVariable String id, @RequestBody EstadoDTO dto){
       EstadoDTOResponse response = factory.toEstadoDTO(service.editarEstado(factory.toEstado(dto), id));
       return ResponseEntity.ok(response);
@@ -38,8 +38,8 @@ public class EstadoController {
    }
 
    @GetMapping("/retornar/{estado}")
-   public ResponseEntity retornarEstadoPorNome(@NotBlank @RequestParam String cidade){
-      EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorNome(cidade));
+   public ResponseEntity retornarEstadoPorNome(@NotBlank @RequestParam String estado){
+      EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorNome(estado));
       return ResponseEntity.ok(response);
    }
 

@@ -17,5 +17,5 @@ public class PessoaDTOResponse {
     private String nome;
     private String cpf;
     private String dataNascimento;
-    private EnderecoDTO endereco;
+    private EnderecoDTOResponse endereco;
 }

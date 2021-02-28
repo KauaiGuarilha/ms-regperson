@@ -27,4 +27,8 @@ public class Cidade {
 
     @Column private String nome;
     @Column private String sigla;
+
+    public Cidade(UUID idCidade){
+        this.id = idCidade;
+    }
 }

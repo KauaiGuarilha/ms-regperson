@@ -26,7 +26,7 @@ public class CidadeController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity editarCidade(@PathVariable String id, @RequestBody CidadeDTO dto){
         CidadeDTOResponse response = factory.toCidadeDTO(service.editarCidade(factory.toCidade(dto), id));
         return ResponseEntity.ok(response);

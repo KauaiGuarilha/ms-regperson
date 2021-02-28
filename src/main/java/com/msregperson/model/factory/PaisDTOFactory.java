@@ -5,13 +5,15 @@ import com.msregperson.model.dto.PaisDTOResponse;
 import com.msregperson.model.entity.Pais;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 @Component
 public class PaisDTOFactory {
 
     public Pais toPais(PaisDTO paisDTO){
         return Pais.builder()
                 .nome(paisDTO.getNome())
-                .sigla(paisDTO.getSigla())
+                .sigla(paisDTO.getSigla().toUpperCase(Locale.ROOT))
                 .build();
     }
 

@@ -21,9 +21,8 @@ public class PessoaController {
     @Autowired private PessoaDTOFactory factory;
 
     @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity salvarPessoa(@RequestBody PessoaDTO pessoaDto){
-        PessoaDTOResponse response = factory.toPessoaDTO(service.criarPessoa(factory.toPessoa(pessoaDto)));
-        return ResponseEntity.ok(response);
+    public PessoaDTOResponse salvarPessoa(@RequestBody PessoaDTO pessoaDto){
+        return factory.toPessoaDTO(service.criarPessoa(factory.toPessoa(pessoaDto)));
     }
 
     @PutMapping("/editar/{id}")
@@ -37,7 +36,7 @@ public class PessoaController {
         return service.retornarPessoas().stream().map(factory::toPessoaDTO).collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/retornar/{cpf}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/retornar/{cpf}")
     public ResponseEntity retornarPessoaPorCpf(@NotBlank @RequestParam String cpf){
         PessoaDTOResponse response = factory.toPessoaDTO(service.retornarPessoaPorCpf(cpf));
         return ResponseEntity.ok(response);

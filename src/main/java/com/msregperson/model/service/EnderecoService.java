@@ -1,7 +1,13 @@
 package com.msregperson.model.service;
 
+import com.msregperson.model.entity.Cidade;
 import com.msregperson.model.entity.Endereco;
+import com.msregperson.model.entity.Estado;
+import com.msregperson.model.entity.Pais;
+import com.msregperson.model.repository.CidadeRepository;
 import com.msregperson.model.repository.EnderecoRepository;
+import com.msregperson.model.repository.EstadoRepository;
+import com.msregperson.model.repository.PaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +18,14 @@ import java.util.UUID;
 @Service
 public class EnderecoService {
 
-    @Autowired private EnderecoRepository repository;
+    @Autowired private EnderecoRepository enderecoRepository;
+    @Autowired private CidadeRepository cidadeRepository;
+    @Autowired private EstadoRepository estadoRepository;
+    @Autowired private PaisRepository paisRepository;
 
     public Endereco criarEndereco(Endereco endereco){
         try {
-            Endereco enderecoSave = repository.save(endereco);
+            Endereco enderecoSave = enderecoRepository.save(endereco);
             return  enderecoSave;
         } catch (Exception e){
             throw new RuntimeException("Não pode criar o cadastro do Endereço.");
@@ -24,24 +33,35 @@ public class EnderecoService {
     }
 
     public Endereco editarEndereco(Endereco endereco, String id){
-        Optional<Endereco> optional = repository.findById(UUID.fromString(id));
+        Optional<Endereco> enderecoOptional = enderecoRepository.findById(UUID.fromString(id));
+        Optional<Cidade> cidadeOptional = cidadeRepository.findById(endereco.getCidade().getId());
+        Optional<Estado> estadoOptional = estadoRepository.findById(endereco.getEstado().getId());
+        Optional<Pais> paisOptional = paisRepository.findById(endereco.getPais().getId());
 
-        if(optional.isPresent()){
-            Endereco db = optional.get();
+        if(enderecoOptional.isPresent() &&
+                cidadeOptional.isPresent() &&
+                estadoOptional.isPresent() &&
+                paisOptional.isPresent()){
+
+            Endereco db = enderecoOptional.get();
+            Cidade cidadeDB = cidadeOptional.get();
+            Estado estadoBD = estadoOptional.get();
+            Pais paisDB = paisOptional.get();
+
             db.setNumero(endereco.getNumero());
             db.setCep(endereco.getCep());
             db.setLogradouro(endereco.getLogradouro());
-            db.setCidade(endereco.getCidade());
-            db.setEstado(endereco.getEstado());
-            db.setPais(endereco.getPais());
+            db.setCidade(cidadeDB);
+            db.setEstado(estadoBD);
+            db.setPais(paisDB);
 
-            return repository.save(db);
+            return enderecoRepository.save(db);
         }
 
         return null;
     }
 
     public List<Endereco> retornarEnderecos(){
-        return repository.findAll();
+        return enderecoRepository.findAll();
     }
 }

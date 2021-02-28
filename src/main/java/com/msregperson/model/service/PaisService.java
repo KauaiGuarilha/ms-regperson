@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -52,7 +53,7 @@ public class PaisService {
 
     public Pais retorarPaisPorSigla(String paisSigla){
         try {
-            Pais pais = repository.findByPaisSigla(paisSigla);
+            Pais pais = repository.findByPaisSigla(paisSigla.toUpperCase(Locale.ROOT));
             return pais;
         } catch (Exception e){
             throw new RuntimeException("Não pode localizar o Pais por sigla.");
