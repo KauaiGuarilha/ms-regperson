@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pais")
+@RequestMapping("/paises")
 public class PaisController {
 
     @Autowired private PaisService service;
     @Autowired private PaisDTOFactory factory;
 
-    @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity salvarPais(@RequestBody PaisDTO paisDTO){
         PaisDTOResponse response = factory.toPaisDTO(service.criarPais(factory.toPais(paisDTO)));
         return ResponseEntity.ok(response);
@@ -32,25 +32,25 @@ public class PaisController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar-paises")
+    @GetMapping
     public List<PaisDTOResponse> retornarPaises(){
         return service.retorarPaises().stream().map(factory::toPaisDTO).collect(Collectors.toList());
     }
 
-    @GetMapping("/retornar/{pais}")
-    public ResponseEntity retornarPaisPorNome(@NotBlank @RequestParam String pais){
+    @GetMapping("/nome/{pais}")
+    public ResponseEntity retornarPaisPorNome(@PathVariable String pais){
         PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorNome(pais));
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar/{sigla}")
-    public ResponseEntity retornarPaisPorSigla(@NotBlank @RequestParam String sigla){
+    @GetMapping("/sigla/{sigla}")
+    public ResponseEntity retornarPaisPorSigla(@PathVariable String sigla){
         PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorSigla(sigla));
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar/{id}")
-    public ResponseEntity retornarPaisPorId(@NotBlank @RequestParam String id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity retornarPaisPorId(@PathVariable String id){
         PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorId(id));
         return ResponseEntity.ok(response);
     }

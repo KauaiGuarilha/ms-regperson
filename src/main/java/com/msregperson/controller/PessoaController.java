@@ -9,18 +9,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/pessoa")
+@RequestMapping("/pessoas")
 public class PessoaController {
 
     @Autowired private PessoaService service;
     @Autowired private PessoaDTOFactory factory;
 
-    @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public PessoaDTOResponse salvarPessoa(@RequestBody PessoaDTO pessoaDto){
         return factory.toPessoaDTO(service.criarPessoa(factory.toPessoa(pessoaDto)));
     }
@@ -31,13 +30,13 @@ public class PessoaController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar-pessoas")
+    @GetMapping
     public List<PessoaDTOResponse> retornarPessoas(){
         return service.retornarPessoas().stream().map(factory::toPessoaDTO).collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/retornar/{cpf}")
-    public ResponseEntity retornarPessoaPorCpf(@NotBlank @RequestParam String cpf){
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity retornarPessoaPorCpf(@PathVariable String cpf){
         PessoaDTOResponse response = factory.toPessoaDTO(service.retornarPessoaPorCpf(cpf));
         return ResponseEntity.ok(response);
     }

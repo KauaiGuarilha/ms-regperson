@@ -14,43 +14,43 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/estado")
+@RequestMapping("/estados")
 public class EstadoController {
 
    @Autowired private EstadoService service;
    @Autowired private EstadoDTOFactory factory;
 
-   @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
+   @PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity salvarEstado(@RequestBody EstadoDTO estadoDTO){
       EstadoDTOResponse response = factory.toEstadoDTO(service.criarEstado(factory.toEstado(estadoDTO)));
       return ResponseEntity.ok(response);
    }
 
-   @PutMapping(value = "{id}")
+   @PutMapping("/{id}")
    public ResponseEntity editarEstado(@PathVariable String id, @RequestBody EstadoDTO dto){
       EstadoDTOResponse response = factory.toEstadoDTO(service.editarEstado(factory.toEstado(dto), id));
       return ResponseEntity.ok(response);
    }
 
-   @GetMapping(value = "retornar-estados")
+   @GetMapping
    public List<EstadoDTOResponse> retornarEstados(){
       return service.retorarEstados().stream().map(factory::toEstadoDTO).collect(Collectors.toList());
    }
 
-   @GetMapping("/retornar/{estado}")
-   public ResponseEntity retornarEstadoPorNome(@NotBlank @RequestParam String estado){
+   @GetMapping("/nome/{estado}")
+   public ResponseEntity retornarEstadoPorNome(@PathVariable String estado){
       EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorNome(estado));
       return ResponseEntity.ok(response);
    }
 
-   @GetMapping("/retornar/{sigla}")
-   public ResponseEntity retornarEstadoPorSigla(@NotBlank @RequestParam String sigla){
+   @GetMapping("/sigla/{sigla}")
+   public ResponseEntity retornarEstadoPorSigla(@PathVariable String sigla){
       EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorSigla(sigla));
       return ResponseEntity.ok(response);
    }
 
-   @GetMapping("/retornar/{id}")
-   public ResponseEntity retornarEstadoPorId(@NotBlank @RequestParam String id){
+   @GetMapping("/id/{id}")
+   public ResponseEntity retornarEstadoPorId(@PathVariable String id){
       EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorId(id));
       return ResponseEntity.ok(response);
    }

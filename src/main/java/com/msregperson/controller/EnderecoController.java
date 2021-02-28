@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     @Autowired private EnderecoService service;
     @Autowired private EnderecoDTOFactory factory;
 
-    @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public EnderecoDTOResponse salvarEndereco(@RequestBody EnderecoDTO enderecoDTO){
         return factory.toEnderecoDTO(service.criarEndereco(factory.toEndereco(enderecoDTO)));
     }
@@ -28,7 +28,7 @@ public class EnderecoController {
         return factory.toEnderecoDTO(service.editarEndereco(factory.toEndereco(dto), id));
     }
 
-    @GetMapping("/retornar-enderecos")
+    @GetMapping
     public List<EnderecoDTOResponse> retornarEnderecos(){
         return service.retornarEnderecos().stream().map(factory::toEnderecoDTO).collect(Collectors.toList());
     }

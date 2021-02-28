@@ -17,6 +17,7 @@ public class EnderecoDTOResponse {
     private Integer numero;
     private String cep;
     private String logradouro;
+    private String complemento;
     private CidadeDTOResponse cidade;
     private EstadoDTOResponse estado;
     private PaisDTOResponse pais;

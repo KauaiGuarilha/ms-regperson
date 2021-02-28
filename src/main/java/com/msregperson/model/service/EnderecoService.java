@@ -42,6 +42,7 @@ public class EnderecoService {
                         .numero(endereco.getNumero())
                         .cep(endereco.getCep())
                         .logradouro(endereco.getLogradouro())
+                        .complemento(endereco.getComplemento())
                         .cidade(cidadeDB)
                         .estado(estadoBD)
                         .pais(paisDB)
@@ -76,6 +77,7 @@ public class EnderecoService {
             db.setNumero(endereco.getNumero());
             db.setCep(endereco.getCep());
             db.setLogradouro(endereco.getLogradouro());
+            db.setComplemento(endereco.getComplemento());
             db.setCidade(cidadeDB);
             db.setEstado(estadoBD);
             db.setPais(paisDB);

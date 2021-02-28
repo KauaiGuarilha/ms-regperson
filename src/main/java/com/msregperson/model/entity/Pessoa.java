@@ -35,8 +35,4 @@ public class Pessoa {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_endereco", nullable = false, updatable = false)
     private Endereco endereco;
-
-     public Pessoa(UUID idPessoa){
-         this.id = idPessoa;
-     }
 }

@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/cidade")
+@RequestMapping("/cidades")
 public class CidadeController {
 
     @Autowired private CidadeService service;
     @Autowired private CidadeDTOFactory factory;
 
-    @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity salvarCidade(@RequestBody CidadeDTO cidadeDTO){
         CidadeDTOResponse response = factory.toCidadeDTO(service.criarCidade(factory.toCidade(cidadeDTO)));
         return ResponseEntity.ok(response);
@@ -32,25 +32,25 @@ public class CidadeController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar-cidades")
+    @GetMapping
     public List<CidadeDTOResponse> retornarCidades(){
         return service.retorarCidades().stream().map(factory::toCidadeDTO).collect(Collectors.toList());
     }
 
-    @GetMapping("/retornar/{cidade}")
-    public ResponseEntity retornarCidadePorNome(@NotBlank @RequestParam String cidade){
+    @GetMapping("/nome/{cidade}")
+    public ResponseEntity retornarCidadePorNome(@PathVariable String cidade){
         CidadeDTOResponse response = factory.toCidadeDTO(service.retorarCidadePorNome(cidade));
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar/{sigla}")
-    public ResponseEntity retornarCidadePorSigla(@NotBlank @RequestParam String sigla){
+    @GetMapping("/sigla/{sigla}")
+    public ResponseEntity retornarCidadePorSigla(@PathVariable String sigla){
         CidadeDTOResponse response = factory.toCidadeDTO(service.retorarCidadePorSigla(sigla));
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/retornar/{id}")
-    public ResponseEntity retornarCidadePorId(@NotBlank @RequestParam String id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity retornarCidadePorId(@PathVariable String id){
         CidadeDTOResponse response = factory.toCidadeDTO(service.retorarCidadePorId(id));
         return ResponseEntity.ok(response);
     }

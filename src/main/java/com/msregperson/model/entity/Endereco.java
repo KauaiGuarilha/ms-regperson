@@ -28,6 +28,7 @@ public class Endereco {
     @Column private Integer numero;
     @Column private String cep;
     @Column private String logradouro;
+    @Column private String complemento;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cidade", nullable = false, updatable = false)

@@ -14,10 +14,6 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class PaisDTO {
 
-    @NotBlank
     private String nome;
-
-    @NotBlank
-    @Size(min = 2, max = 2)
     private String sigla;
 }
