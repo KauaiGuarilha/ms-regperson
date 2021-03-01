@@ -29,12 +29,12 @@ public class EstadoService {
 
         if (optional.isPresent()){
             Estado db = optional.get();
+
             db.setNome(estado.getNome());
             db.setSigla(estado.getSigla());
 
             return repository.save(db);
         }
-
         return null;
     }
 

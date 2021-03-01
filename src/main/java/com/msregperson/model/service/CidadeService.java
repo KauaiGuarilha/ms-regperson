@@ -29,12 +29,12 @@ public class CidadeService {
 
         if (optional.isPresent()){
             Cidade db = optional.get();
+
             db.setNome(cidade.getNome());
             db.setSigla(cidade.getSigla());
 
             return repository.save(db);
         }
-
         return null;
     }
 

@@ -29,12 +29,12 @@ public class PaisService {
 
         if (optional.isPresent()){
             Pais db = optional.get();
+
             db.setNome(pais.getNome());
             db.setSigla(pais.getSigla());
 
             return repository.save(db);
         }
-
         return null;
     }
 

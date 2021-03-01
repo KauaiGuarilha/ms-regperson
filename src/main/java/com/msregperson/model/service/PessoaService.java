@@ -36,7 +36,6 @@ public class PessoaService {
 
                 return pessoaSave;
             }
-
             return null;
         } catch (Exception e){
             throw new RuntimeException("Não pode criar o cadastro da Pessoa.");
@@ -44,6 +43,7 @@ public class PessoaService {
     }
 
     public Pessoa editarPessoa(Pessoa pessoa, String id){
+
         Optional<Pessoa> pessoaOptional = pessoaRepository.findById(UUID.fromString(id));
         Optional<Endereco> enderecoOptional = enderecoRepository.findById(pessoa.getEndereco().getId());
 
@@ -58,7 +58,6 @@ public class PessoaService {
 
             return pessoaRepository.save(pessoaDB);
         }
-
         return null;
     }
 
