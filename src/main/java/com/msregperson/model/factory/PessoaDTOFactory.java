@@ -30,6 +30,7 @@ public class PessoaDTOFactory {
                         .numero(pessoa.getEndereco().getNumero())
                         .cep(pessoa.getEndereco().getCep())
                         .logradouro(pessoa.getEndereco().getLogradouro())
+                        .complemento(pessoa.getEndereco().getComplemento())
                         .cidade(CidadeDTOResponse.builder()
                                 .id(pessoa.getEndereco().getCidade().getId())
                                 .nome(pessoa.getEndereco().getCidade().getNome())

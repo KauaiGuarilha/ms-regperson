@@ -21,7 +21,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.msregperson.controller"))
-                .paths(Predicates.not(PathSelectors.regex("/swagger-resources")))
+                .paths(Predicates.not(PathSelectors.regex("/rest/swagger-resources")))
                 .build()
                 .apiInfo(metaData());
     }
