@@ -35,7 +35,7 @@ public class PessoaController {
         return service.retornarPessoas().stream().map(factory::toPessoaDTO).collect(Collectors.toList());
     }
 
-    @GetMapping("/cpf/{cpf}")
+    @GetMapping("/{cpf}")
     public ResponseEntity retornarPessoaPorCpf(@PathVariable String cpf){
         PessoaDTOResponse response = factory.toPessoaDTO(service.retornarPessoaPorCpf(cpf));
         return ResponseEntity.ok(response);

@@ -49,7 +49,7 @@ public class CidadeController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity retornarCidadePorId(@PathVariable String id){
         CidadeDTOResponse response = factory.toCidadeDTO(service.retorarCidadePorId(id));
         return ResponseEntity.ok(response);

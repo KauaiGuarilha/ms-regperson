@@ -49,7 +49,7 @@ public class EstadoController {
       return ResponseEntity.ok(response);
    }
 
-   @GetMapping("/id/{id}")
+   @GetMapping("/{id}")
    public ResponseEntity retornarEstadoPorId(@PathVariable String id){
       EstadoDTOResponse response = factory.toEstadoDTO(service.retorarEstadoPorId(id));
       return ResponseEntity.ok(response);

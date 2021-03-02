@@ -49,7 +49,7 @@ public class PaisController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity retornarPaisPorId(@PathVariable String id){
         PaisDTOResponse response = factory.toPaisDTO(service.retorarPaisPorId(id));
         return ResponseEntity.ok(response);
